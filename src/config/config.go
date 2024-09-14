@@ -4,14 +4,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	cmmeta "github.com/cert-manager/cert-manager/pkg/apis/meta/v1"
 	"k8s.io/klog/v2"
 
-	"github.com/cert-manager/cert-manager/pkg/apis/meta/v1"
 	extapi "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 )
 
 type DuckDNSProviderConfig struct {
-	APITokenSecretRef v1.SecretKeySelector `json:"apiTokenSecretRef"`
+	APITokenSecretRef cmmeta.SecretKeySelector `json:"apiTokenSecretRef"`
 }
 
 func LoadConfig(cfgJSON *extapi.JSON) (DuckDNSProviderConfig, error) {
@@ -34,7 +34,11 @@ func LoadConfig(cfgJSON *extapi.JSON) (DuckDNSProviderConfig, error) {
 
 func validateConfig(cfg *DuckDNSProviderConfig) error {
 	if cfg.APITokenSecretRef.LocalObjectReference.Name == "" {
-		return errors.New("no api token secret provided in DuckDNS config")
+		return errors.New("no api token secret name provided in DuckDNS config")
+	}
+
+	if cfg.APITokenSecretRef.Key == "" {
+		return errors.New("no api token secret key provided in DuckDNS config")
 	}
 
 	return nil
