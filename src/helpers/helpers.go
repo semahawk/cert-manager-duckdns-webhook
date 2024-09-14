@@ -5,12 +5,11 @@ import (
 	"strings"
 )
 
-const duckDNSSuffix = "duckdns.org"
+const duckDNSSuffix = ".duckdns.org"
 
 func GetDomainName(DNSName string) string {
-	domainName := strings.TrimSuffix(DNSName, duckDNSSuffix) // prefix.domain. or domain.
-	// Remove trailing dot
-	domainName = util.UnFqdn(domainName) // prefix.domain or domain
+	domainName := util.UnFqdn(DNSName) // Remove trailing dot (domain.duckdns.org. -> domain.duckdns.org)
+	domainName = strings.TrimSuffix(domainName, duckDNSSuffix)
 
 	split := strings.Split(domainName, ".")
 
