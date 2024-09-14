@@ -49,7 +49,7 @@ func (solver *Solver) Present(ch *v1alpha1.ChallengeRequest) error {
 		klog.Errorf("Failed to set TXT record: %v", err)
 		return err
 	}
-	klog.Infof("Got status %v when updating TXT record for %v", res.Status, ch.ResolvedFQDN)
+	klog.Infof("Got status %v when updating TXT record with %v for %v", res.Status, ch.Key, ch.ResolvedFQDN)
 	return nil
 }
 
