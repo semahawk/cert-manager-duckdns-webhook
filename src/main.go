@@ -48,7 +48,7 @@ func (solver *duckDNSProviderSolver) createDuckDNSConnector(ch *v1alpha1.Challen
 
 	domain := helpers.GetDomainName(ch.DNSName)
 
-	connector := duckdns.NewDuckDNSConnector(*token)
+	connector := duckdns.NewConnector(*token)
 	return connector, domain, nil
 }
 

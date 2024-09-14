@@ -24,7 +24,7 @@ func LoadConfig(cfgJSON *extapi.JSON) (DuckDNSProviderConfig, error) {
 		return cfg, fmt.Errorf("error decoding solver config: %v", err)
 	}
 
-	if err := ValidateConfig(&cfg); err != nil {
+	if err := validateConfig(&cfg); err != nil {
 		klog.Errorf("Invalid config: %v", err)
 		return cfg, err
 	}
@@ -32,7 +32,7 @@ func LoadConfig(cfgJSON *extapi.JSON) (DuckDNSProviderConfig, error) {
 	return cfg, nil
 }
 
-func ValidateConfig(cfg *DuckDNSProviderConfig) error {
+func validateConfig(cfg *DuckDNSProviderConfig) error {
 	if cfg.APITokenSecretRef.LocalObjectReference.Name == "" {
 		return errors.New("No api token secret provided in DuckDNS config")
 	}

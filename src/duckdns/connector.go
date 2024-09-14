@@ -7,14 +7,14 @@ import (
 	"time"
 )
 
-const duckDNSUpdateURL = "https://www.duckdns.org/update"
+const updateURL = "https://www.duckdns.org/update"
 
 type Connector struct {
 	httpClient *http.Client
 	token      string
 }
 
-func NewDuckDNSConnector(token string) *Connector {
+func NewConnector(token string) *Connector {
 	return &Connector{
 		httpClient: &http.Client{Timeout: 10 * time.Second},
 		token:      token,
@@ -30,7 +30,7 @@ func (c *Connector) CleanTXTRecord(ctx context.Context, domain string) (*http.Re
 }
 
 func (c *Connector) updateTXTRecord(ctx context.Context, domain, txt string) (*http.Response, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, duckDNSUpdateURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, updateURL, nil)
 	if err != nil {
 		return nil, err
 	}
