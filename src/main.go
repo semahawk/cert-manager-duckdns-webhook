@@ -33,7 +33,7 @@ func (solver *duckDNSProviderSolver) Name() string {
 	return "duckdns"
 }
 
-func (solver *duckDNSProviderSolver) createDuckDNSConnector(ch *v1alpha1.ChallengeRequest) (*duckdns.DuckDNSConnector, string, error) {
+func (solver *duckDNSProviderSolver) createDuckDNSConnector(ch *v1alpha1.ChallengeRequest) (*duckdns.Connector, string, error) {
 	cfg, err := config.LoadConfig(ch.Config)
 	if err != nil {
 		klog.Errorf("Unable to load config: %v", err)

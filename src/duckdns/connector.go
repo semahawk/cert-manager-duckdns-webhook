@@ -9,27 +9,27 @@ import (
 
 const duckDNSUpdateURL = "https://www.duckdns.org/update"
 
-type DuckDNSConnector struct {
+type Connector struct {
 	httpClient *http.Client
 	token      string
 }
 
-func NewDuckDNSConnector(token string) *DuckDNSConnector {
-	return &DuckDNSConnector{
+func NewDuckDNSConnector(token string) *Connector {
+	return &Connector{
 		httpClient: &http.Client{Timeout: 10 * time.Second},
 		token:      token,
 	}
 }
 
-func (c *DuckDNSConnector) SetTXTRecord(ctx context.Context, domain, txt string) (*http.Response, error) {
+func (c *Connector) SetTXTRecord(ctx context.Context, domain, txt string) (*http.Response, error) {
 	return c.updateTXTRecord(ctx, domain, txt)
 }
 
-func (c *DuckDNSConnector) CleanTXTRecord(ctx context.Context, domain string) (*http.Response, error) {
+func (c *Connector) CleanTXTRecord(ctx context.Context, domain string) (*http.Response, error) {
 	return c.updateTXTRecord(ctx, domain, "")
 }
 
-func (c *DuckDNSConnector) updateTXTRecord(ctx context.Context, domain, txt string) (*http.Response, error) {
+func (c *Connector) updateTXTRecord(ctx context.Context, domain, txt string) (*http.Response, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, duckDNSUpdateURL, nil)
 	if err != nil {
 		return nil, err
