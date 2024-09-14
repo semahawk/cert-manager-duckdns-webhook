@@ -3,6 +3,17 @@ entries:
   cert-manager-duckdns-webhook:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2024-09-14T17:55:22.614979077Z"
+    description: Helm Chart for the Cert Manager DuckDNS WebHook
+    digest: fa189c7df3f3a86ecf96a6525749fe4f5fec274702d3e3db63a7ca54d74eeeb4
+    maintainers:
+    - name: csp33
+    name: cert-manager-duckdns-webhook
+    urls:
+    - https://github.com/csp33/cert-manager-duckdns-webhook/releases/download/cert-manager-duckdns-webhook-1.1.2/cert-manager-duckdns-webhook-1.1.2.tgz
+    version: 1.1.2
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2024-09-14T17:50:05.060689314Z"
     description: Helm Chart for the Cert Manager DuckDNS WebHook
     digest: 0183b6c3fa85d7fc550887737505accfb8d096a219b4987a91243be761e6bf25
@@ -56,4 +67,4 @@ entries:
     urls:
     - https://github.com/csp33/cert-manager-duckdns-webhook/releases/download/cert-manager-duckdns-webhook-0.1.0/cert-manager-duckdns-webhook-0.1.0.tgz
     version: 0.1.0
-generated: "2024-09-14T17:50:05.06074132Z"
+generated: "2024-09-14T17:55:22.615002331Z"
