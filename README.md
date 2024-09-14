@@ -35,3 +35,7 @@ $ TEST_ZONE_NAME=example.com. make test
 
 The example file has a number of areas you must fill in and replace with your
 own options in order for tests to pass.
+
+## Acknowledgments
+
+- Inspired by [the wonderful ebrianne's job](https://github.com/ebrianne/cert-manager-webhook-duckdns).
