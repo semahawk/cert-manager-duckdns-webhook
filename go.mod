@@ -1,4 +1,4 @@
-module github.com/cert-manager/webhook-example
+module github.com/csp33/cert-manager-duckdns-webhook
 
 go 1.23.1
 
