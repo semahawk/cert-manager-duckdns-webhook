@@ -34,7 +34,7 @@ func LoadConfig(cfgJSON *extapi.JSON) (DuckDNSProviderConfig, error) {
 
 func validateConfig(cfg *DuckDNSProviderConfig) error {
 	if cfg.APITokenSecretRef.LocalObjectReference.Name == "" {
-		return errors.New("No api token secret provided in DuckDNS config")
+		return errors.New("no api token secret provided in DuckDNS config")
 	}
 
 	return nil
