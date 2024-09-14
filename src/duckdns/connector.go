@@ -7,6 +7,11 @@ import (
 	"time"
 )
 
+type ConnectorInterface interface {
+	SetTXTRecord(ctx context.Context, domain string, txt string) (*http.Response, error)
+	CleanTXTRecord(ctx context.Context, domain string) (*http.Response, error)
+}
+
 const updateURL = "https://www.duckdns.org/update"
 
 type Connector struct {

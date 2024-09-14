@@ -13,7 +13,7 @@ const (
 	missingSecretErrMsg = "Unable to load secret %v %q"
 )
 
-func GetDuckDNSToken(client *kubernetes.Clientset, cfg *DuckDNSProviderConfig, namespace string) (*string, error) {
+func GetDuckDNSToken(client kubernetes.Interface, cfg *DuckDNSProviderConfig, namespace string) (*string, error) {
 	secretName := cfg.APITokenSecretRef.LocalObjectReference.Name
 
 	secret, err := client.CoreV1().Secrets(namespace).Get(context.Background(), secretName, metav1.GetOptions{})
