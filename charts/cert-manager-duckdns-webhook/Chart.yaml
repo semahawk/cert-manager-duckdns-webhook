@@ -3,3 +3,6 @@ appVersion: "1.0"
 description: Helm Chart for the Cert Manager DuckDNS WebHook
 name: cert-manager-duckdns-webhook
 version: 0.1.0
+
+maintainers:
+  - name: csp33
