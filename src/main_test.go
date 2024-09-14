@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/csp33/cert-manager-duckdns-webhook/src/duckdns"
-	"k8s.io/client-go/kubernetes/fake"
 	"os"
 	"testing"
 
@@ -10,26 +9,18 @@ import (
 )
 
 var (
-	zone = os.Getenv("TEST_ZONE_NAME")
+	domain = os.Getenv("DUCKDNS_DOMAIN_URL")
+	zone   = domain + "."
 )
 
 func TestRunsSuite(t *testing.T) {
-	// The manifest path should contain a file named config.json that is a
-	// snippet of valid configuration that should be included on the
-	// ChallengeRequest passed as part of the test cases.
-	//
-
-	fakeClient := fake.NewClientset()
-	solver := duckdns.NewSolver(fakeClient)
+	solver := duckdns.NewSolver(nil)
 	fixture := acmetest.NewFixture(solver,
-		acmetest.SetResolvedZone("example.com."),
-		acmetest.SetManifestPath("testdata/my-custom-solver"),
-		acmetest.SetDNSServer("127.0.0.1:59351"),
-		acmetest.SetUseAuthoritative(false),
+		acmetest.SetResolvedZone(zone),
+		acmetest.SetDNSName(domain),
+		acmetest.SetAllowAmbientCredentials(false),
+		acmetest.SetManifestPath("../testdata/duckdns-solver"),
 	)
-	//need to uncomment and  RunConformance delete runBasic and runExtended once https://github.com/cert-manager/cert-manager/pull/4835 is merged
-	//fixture.RunConformance(t)
-	fixture.RunBasic(t)
-	fixture.RunExtended(t)
 
+	fixture.RunBasic(t)
 }

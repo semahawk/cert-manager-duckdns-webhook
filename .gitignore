@@ -17,3 +17,5 @@ webhook
 # Make artifacts
 _out
 _test
+
+testdata/

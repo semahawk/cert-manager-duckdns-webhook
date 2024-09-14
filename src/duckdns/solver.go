@@ -49,7 +49,12 @@ func (solver *Solver) Present(ch *v1alpha1.ChallengeRequest) error {
 		klog.Errorf("Failed to set TXT record: %v", err)
 		return err
 	}
-	klog.Infof("Got status %v when updating TXT record with %v for %v", res.Status, ch.Key, ch.ResolvedFQDN)
+	body, err := helpers.GetResponseBody(res)
+	if err != nil {
+		klog.Errorf("Failed to get response body for request %v", res)
+		return err
+	}
+	klog.Infof("Got status %v body %v when updating TXT record with %v for %v", res.Status, body, ch.Key, ch.ResolvedFQDN)
 	return nil
 }
 
@@ -59,11 +64,18 @@ func (solver *Solver) CleanUp(ch *v1alpha1.ChallengeRequest) error {
 		return err
 	}
 
-	_, err = connector.CleanTXTRecord(context.Background(), domain)
+	res, err := connector.CleanTXTRecord(context.Background(), domain)
 	if err != nil {
 		klog.Errorf("Failed to clean TXT record for DNS %v: %v", ch.DNSName, err)
 		return err
 	}
+	body, err := helpers.GetResponseBody(res)
+	if err != nil {
+		klog.Errorf("Failed to get response body for request %v", res)
+		return err
+	}
+	klog.Infof("Got status %v body %v when cleaning TXT record for %v", res.Status, body, ch.ResolvedFQDN)
+
 	return nil
 }
 

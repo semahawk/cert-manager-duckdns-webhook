@@ -16,25 +16,25 @@ TODO
 
 TODO
 
-
 ### Running the test suite
 
-All DNS providers **must** run the DNS01 provider conformance testing suite,
-else they will have undetermined behaviour when used with cert-manager.
+1. Create a domain in DuckDNS.
+2. Run the following command.
+    ```shell
+    export DUCKDNS_DOMAIN=<your-domain> // Example: my-domain for my-domain.duckdns.org
+    export DUCKDNS_TOKEN=<your-token>
+    ```
+3. Run `make test`
 
-**It is essential that you configure and run the test suite when creating a
-DNS01 webhook.**
+### Pushing the image
 
-An example Go test file has been provided in [main_test.go](https://github.com/cert-manager/webhook-example/blob/master/main_test.go).
-
-You can run the test suite with:
-
-```bash
-$ TEST_ZONE_NAME=example.com. make test
+```shell
+  export IMAGE_TAG=1.0.0
+  docker build -t csp33/cert-manager-duckdns-webhook:$IMAGE_TAG .
+  docker tag csp33/cert-manager-duckdns-webhook:$IMAGE_TAG csp33/cert-manager-duckdns-webhook:latest
+  docker push csp33/cert-manager-duckdns-webhook:$IMAGE_TAG
+  docker push csp33/cert-manager-duckdns-webhook:latest
 ```
-
-The example file has a number of areas you must fill in and replace with your
-own options in order for tests to pass.
 
 ## Acknowledgments
 
