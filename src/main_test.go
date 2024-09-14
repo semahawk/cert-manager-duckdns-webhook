@@ -1,12 +1,12 @@
 package main
 
 import (
+	"github.com/csp33/cert-manager-duckdns-webhook/src/duckdns"
+	"k8s.io/client-go/kubernetes/fake"
 	"os"
 	"testing"
 
 	acmetest "github.com/cert-manager/cert-manager/test/acme"
-
-	"github.com/csp33/cert-manager-duckdns-webhook/example"
 )
 
 var (
@@ -19,14 +19,8 @@ func TestRunsSuite(t *testing.T) {
 	// ChallengeRequest passed as part of the test cases.
 	//
 
-	// Uncomment the below fixture when implementing your custom DNS provider
-	//fixture := acmetest.NewFixture(&duckDNSProviderSolver{},
-	//	acmetest.SetResolvedZone(zone),
-	//	acmetest.SetAllowAmbientCredentials(false),
-	//	acmetest.SetManifestPath("testdata/my-custom-solver"),
-	//	acmetest.SetBinariesPath("_test/kubebuilder/bin"),
-	//)
-	solver := example.New("59351")
+	fakeClient := fake.NewClientset()
+	solver := duckdns.NewSolver(fakeClient)
 	fixture := acmetest.NewFixture(solver,
 		acmetest.SetResolvedZone("example.com."),
 		acmetest.SetManifestPath("testdata/my-custom-solver"),
