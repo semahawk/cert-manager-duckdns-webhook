@@ -13,7 +13,7 @@ certManager:
   serviceAccountName: cert-manager
 
 image:
-  repository: mycompany/webhook-image
+  repository: csp33/cert-manager-duckdns-webhook
   tag: latest
   pullPolicy: IfNotPresent
 
