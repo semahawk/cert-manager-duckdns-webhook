@@ -28,23 +28,14 @@ func (solver *Solver) Name() string {
 	return "duckdns"
 }
 
-func (solver *Solver) createDuckDNSConnector(ch *v1alpha1.ChallengeRequest) (*Connector, string, error) {
-	cfg, err := config.LoadConfig(ch.Config)
+func (solver *Solver) Initialize(kubeClientConfig *rest.Config, _ <-chan struct{}) error {
+	cl, err := kubernetes.NewForConfig(kubeClientConfig)
 	if err != nil {
-		klog.Errorf("Unable to load config: %v", err)
-		return nil, "", err
+		return err
 	}
+	solver.client = cl
 
-	token, err := config.GetDuckDNSToken(solver.client, &cfg, ch.ResourceNamespace)
-	if err != nil {
-		klog.Errorf("Unable to get token: %v", err)
-		return nil, "", err
-	}
-
-	domain := helpers.GetDomainName(ch.DNSName)
-
-	connector := solver.connectorCreator(*token)
-	return connector, domain, nil
+	return nil
 }
 
 func (solver *Solver) Present(ch *v1alpha1.ChallengeRequest) error {
@@ -76,12 +67,21 @@ func (solver *Solver) CleanUp(ch *v1alpha1.ChallengeRequest) error {
 	return nil
 }
 
-func (solver *Solver) Initialize(kubeClientConfig *rest.Config, _ <-chan struct{}) error {
-	cl, err := kubernetes.NewForConfig(kubeClientConfig)
+func (solver *Solver) createDuckDNSConnector(ch *v1alpha1.ChallengeRequest) (*Connector, string, error) {
+	cfg, err := config.LoadConfig(ch.Config)
 	if err != nil {
-		return err
+		klog.Errorf("Unable to load config: %v", err)
+		return nil, "", err
 	}
-	solver.client = cl
 
-	return nil
+	token, err := config.GetDuckDNSToken(solver.client, &cfg, ch.ResourceNamespace)
+	if err != nil {
+		klog.Errorf("Unable to get token: %v", err)
+		return nil, "", err
+	}
+
+	domain := helpers.GetDomainName(ch.DNSName)
+
+	connector := solver.connectorCreator(*token)
+	return connector, domain, nil
 }
