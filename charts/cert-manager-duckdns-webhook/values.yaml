@@ -29,7 +29,7 @@ clusterIssuer:
   staging:
     create: false
     server: https://acme-staging-v02.api.letsencrypt.org/directory
-    name: duckdns-letsencrypt-prod
+    name: duckdns-letsencrypt-staging
 
 token:
   value: ~
