@@ -2,7 +2,7 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: {{ $.Values.clusterIssuer.production.name }}
+  name: {{ $.Values.clusterIssuer.staging.name }}
   labels:
     app: {{ include "cert-manager-duckdns-webhook.name" . }}
     chart: {{ include "cert-manager-duckdns-webhook.chart" . }}
