@@ -12,12 +12,14 @@ const updateURL = "https://www.duckdns.org/update"
 type Connector struct {
 	httpClient *http.Client
 	token      string
+	updateURL  string
 }
 
 func NewConnector(token string) *Connector {
 	return &Connector{
 		httpClient: &http.Client{Timeout: 10 * time.Second},
 		token:      token,
+		updateURL:  updateURL,
 	}
 }
 
