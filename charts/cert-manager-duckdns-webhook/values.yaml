@@ -35,7 +35,7 @@ clusterIssuer:
 
 token:
   value: ~
-  existingSecretName: "" # Secret must have the token in the `api-token` key
+  existingSecretName: "" # Secret must have the token in the `token` key
 
 service:
   type: ClusterIP
