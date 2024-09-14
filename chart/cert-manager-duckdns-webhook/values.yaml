@@ -20,6 +20,21 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
+clusterIssuer:
+  email: ~
+  production:
+    create: false
+    server: https://acme-v02.api.letsencrypt.org/directory
+    name: duckdns-letsencrypt-prod
+  staging:
+    create: false
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    name: duckdns-letsencrypt-prod
+
+token:
+  value: ~
+  existingSecretName: "" # Secret must have the token in the `api-token` key
+
 service:
   type: ClusterIP
   port: 443
