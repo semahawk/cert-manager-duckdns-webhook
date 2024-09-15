@@ -38,6 +38,3 @@ This WebHook solves the DNS01 challenge to prove ownership of DuckDNS domains.
 ## Acknowledgments
 
 - Inspired by [the wonderful ebrianne's job](https://github.com/ebrianne/cert-manager-webhook-duckdns).
-
-
-[Repository Link](https://github.com/csp33/cert-manager-duckdns-webhook)
