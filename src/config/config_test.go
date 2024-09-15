@@ -13,7 +13,7 @@ func TestLoadConfig_ValidConfig(t *testing.T) {
 		Raw: json.RawMessage(`{
 			"apiTokenSecretRef": {
 				"name": "my-secret",
-				"key": "api-token"
+				"key": "token"
 			}
 		}`),
 	}
@@ -22,7 +22,7 @@ func TestLoadConfig_ValidConfig(t *testing.T) {
 
 	assert.NoError(t, err, "Expected no error for valid config")
 	assert.Equal(t, "my-secret", cfg.APITokenSecretRef.LocalObjectReference.Name, "Expected API token secret name to match")
-	assert.Equal(t, "api-token", cfg.APITokenSecretRef.Key, "Expected API token secret key to match")
+	assert.Equal(t, "token", cfg.APITokenSecretRef.Key, "Expected API token secret key to match")
 }
 
 func TestLoadConfig_InvalidConfigName(t *testing.T) {
@@ -30,7 +30,7 @@ func TestLoadConfig_InvalidConfigName(t *testing.T) {
 		Raw: json.RawMessage(`{
 			"apiTokenSecretRef": {
 				"name": "",
-				"key": "api-token"
+				"key": "token"
 			}
 		}`),
 	}

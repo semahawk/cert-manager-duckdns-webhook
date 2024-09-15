@@ -8,6 +8,8 @@
 # here is recommended.
 groupName: acme.mycompany.com
 
+logLevel: 2
+
 certManager:
   namespace: cert-manager
   serviceAccountName: cert-manager
@@ -29,11 +31,11 @@ clusterIssuer:
   staging:
     create: false
     server: https://acme-staging-v02.api.letsencrypt.org/directory
-    name: duckdns-letsencrypt-prod
+    name: duckdns-letsencrypt-staging
 
 token:
   value: ~
-  existingSecretName: "" # Secret must have the token in the `api-token` key
+  existingSecretName: "" # Secret must have the token in the `token` key
 
 service:
   type: ClusterIP
