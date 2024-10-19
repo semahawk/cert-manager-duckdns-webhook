@@ -17,7 +17,7 @@ func GetDomainName(DNSName string) string {
 	split := strings.Split(domainName, ".")
 
 	// If it's prefix.domain, return domain
-	if len(split) == 2 {
+	if len(split) >= 2 {
 		return split[1]
 	} else {
 		return domainName
