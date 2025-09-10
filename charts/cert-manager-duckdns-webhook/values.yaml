@@ -28,10 +28,12 @@ clusterIssuer:
     create: false
     server: https://acme-v02.api.letsencrypt.org/directory
     name: duckdns-letsencrypt-prod
+    cnameStrategy: Follow
   staging:
     create: false
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     name: duckdns-letsencrypt-staging
+    cnameStrategy: Follow
 
 token:
   value: ~

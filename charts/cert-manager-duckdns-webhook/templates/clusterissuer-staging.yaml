@@ -17,6 +17,7 @@ spec:
     server: {{ $.Values.clusterIssuer.staging.server }}
     solvers:
       - dns01:
+          cnameStrategy: {{ $.Values.clusterIssuer.staging.cnameStrategy }}
           webhook:
             config:
               apiTokenSecretRef:
