@@ -2,6 +2,7 @@ package duckdns
 
 import (
 	"context"
+
 	"github.com/cert-manager/cert-manager/pkg/acme/webhook/apis/acme/v1alpha1"
 	"github.com/csp33/cert-manager-duckdns-webhook/src/config"
 	"github.com/csp33/cert-manager-duckdns-webhook/src/helpers"
@@ -92,7 +93,7 @@ func (solver *Solver) createDuckDNSConnector(ch *v1alpha1.ChallengeRequest) (*Co
 		return nil, "", err
 	}
 
-	domain := helpers.GetDomainName(ch.DNSName)
+	domain := helpers.GetDomainName(ch.ResolvedFQDN)
 
 	connector := solver.connectorCreator(*token)
 	return connector, domain, nil
