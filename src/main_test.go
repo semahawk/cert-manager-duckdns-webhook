@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/csp33/cert-manager-duckdns-webhook/src/duckdns"
 	"os"
 	"testing"
+
+	"github.com/semahawk/cert-manager-duckdns-webhook/src/duckdns"
 
 	acmetest "github.com/cert-manager/cert-manager/test/acme"
 )

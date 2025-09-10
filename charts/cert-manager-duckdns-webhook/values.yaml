@@ -15,7 +15,7 @@ certManager:
   serviceAccountName: cert-manager
 
 image:
-  repository: csp33/cert-manager-duckdns-webhook
+  repository: ghcr.io/semahawk/cert-manager-duckdns-webhook
   tag: latest
   pullPolicy: IfNotPresent
 

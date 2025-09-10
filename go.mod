@@ -1,4 +1,4 @@
-module github.com/csp33/cert-manager-duckdns-webhook
+module github.com/semahawk/cert-manager-duckdns-webhook
 
 go 1.22.0
 
@@ -9,7 +9,6 @@ require (
 	k8s.io/apimachinery v0.30.1
 	k8s.io/client-go v0.30.1
 	k8s.io/klog/v2 v2.120.1
-
 )
 
 require (

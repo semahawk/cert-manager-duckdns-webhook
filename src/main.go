@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/cert-manager/cert-manager/pkg/acme/webhook/cmd"
-	"github.com/csp33/cert-manager-duckdns-webhook/src/duckdns"
 	"os"
+
+	"github.com/cert-manager/cert-manager/pkg/acme/webhook/cmd"
+	"github.com/semahawk/cert-manager-duckdns-webhook/src/duckdns"
 )
 
 var GroupName = os.Getenv("GROUP_NAME")

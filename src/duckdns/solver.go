@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/cert-manager/cert-manager/pkg/acme/webhook/apis/acme/v1alpha1"
-	"github.com/csp33/cert-manager-duckdns-webhook/src/config"
-	"github.com/csp33/cert-manager-duckdns-webhook/src/helpers"
+	"github.com/semahawk/cert-manager-duckdns-webhook/src/config"
+	"github.com/semahawk/cert-manager-duckdns-webhook/src/helpers"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"k8s.io/klog/v2"
